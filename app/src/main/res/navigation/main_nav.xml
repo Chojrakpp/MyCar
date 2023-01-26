@@ -21,5 +21,20 @@
         <action
             android:id="@+id/action_login_to_createAccount"
             app:destination="@id/createAccountFragment" />
+        <action
+            android:id="@+id/action_login_to_home"
+            app:destination="@id/homeFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="be.ehb.mycar.fragments.HomeFragment"
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_home_to_noteDetails"
+            app:destination="@id/noteDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/noteDetailsFragment"
+        android:name="be.ehb.mycar.fragments.NoteDetailsFragment"
+        android:label="NoteDetailsFragment" />
 </navigation>

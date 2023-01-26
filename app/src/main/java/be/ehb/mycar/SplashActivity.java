@@ -1,9 +1,15 @@
 package be.ehb.mycar;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.os.Bundle;
 import android.os.Handler;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import be.ehb.mycar.fragments.LoginFragment;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -14,7 +20,7 @@ public class SplashActivity extends AppCompatActivity {
 
         new Handler().postDelayed(new Runnable() {
             @Override
-            public void run() {// stop splashactivity dat hij niet runt in background
+            public void run() {
                 setContentView(R.layout.activity_main);
             }
         }, 1000); // Splashscreen timer op 1s

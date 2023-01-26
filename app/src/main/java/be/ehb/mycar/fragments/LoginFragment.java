@@ -47,6 +47,23 @@ public class LoginFragment extends Fragment {
         return binding.getRoot();
     }
 
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        binding.btnToRegister.setOnClickListener(
+                (View v) -> {
+                    NavHostFragment.findNavController(LoginFragment.this)
+                            .navigate(R.id.action_login_to_createAccount);
+                }
+        );
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        binding = null;
+    }
+
     void loginUser(){
         String email = editTextEmail.getText().toString();
         String password = editTextpassword.getText().toString();
@@ -69,7 +86,7 @@ public class LoginFragment extends Fragment {
                 if(task.isSuccessful()){
                     // login is success
                         //if (firebaseAuth.getCurrentUser().isEmailVerified()){
-                            //go to main activity
+                    NavHostFragment.findNavController(LoginFragment.this).navigate(R.id.action_login_to_home);
                         //}
                 } else {
                     // login failed
@@ -101,22 +118,5 @@ public class LoginFragment extends Fragment {
             return false;
         }
         return true;
-    }
-
-    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        binding.btnToRegister.setOnClickListener(
-                (View v) -> {
-                    NavHostFragment.findNavController(LoginFragment.this)
-                            .navigate(R.id.action_login_to_createAccount);
-                }
-        );
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        binding = null;
     }
 }
