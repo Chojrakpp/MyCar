@@ -84,7 +84,7 @@ public class CreateAccountFragment extends Fragment {
                         if(task.isSuccessful()){
                             // Account created
                             Toast.makeText(getActivity(), "Succesfully create account, Check email to verify", Toast.LENGTH_SHORT).show();
-                            fireBaseAuth.getCurrentUser().sendEmailVerification();
+                            //fireBaseAuth.getCurrentUser().sendEmailVerification();
                             fireBaseAuth.signOut(); // sign out after verification can login instantly
                             NavHostFragment.findNavController(CreateAccountFragment.this).navigate(R.id.action_createAccount_to_login);
                         } else {
@@ -93,7 +93,6 @@ public class CreateAccountFragment extends Fragment {
                         }
                     }
                 });
-
     }
 
     //loading bar showing after register btn click

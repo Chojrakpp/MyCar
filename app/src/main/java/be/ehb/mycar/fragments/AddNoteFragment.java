@@ -20,27 +20,28 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.ServerTimestamp;
-import com.google.firestore.v1.DocumentTransform;
+
+import java.util.ArrayList;
 
 import be.ehb.mycar.R;
-import be.ehb.mycar.databinding.FragmentNoteDetailsBinding;
+import be.ehb.mycar.databinding.FragmentAddNoteBinding;
 import be.ehb.mycar.models.Note;
 
-public class NoteDetailsFragment extends Fragment {
+public class AddNoteFragment extends Fragment {
 
-    private FragmentNoteDetailsBinding binding;
+    private FragmentAddNoteBinding binding;
 
-    EditText editTextTitle, editTextContent;
+    EditText editTextTitle, editTextContent, editTextFuel;
     ImageButton btnSaveNote;
     @Override
     public View onCreateView (LayoutInflater inflater,
                               ViewGroup container,
                               Bundle savedInstanceState) {
-        binding = FragmentNoteDetailsBinding.inflate(inflater, container, false);
+        binding = FragmentAddNoteBinding.inflate(inflater, container, false);
 
         editTextTitle = binding.etNoteTitle;
         editTextContent = binding.etNoteContent;
+        editTextFuel = binding.etFuelEconomy;
         btnSaveNote = binding.btnSaveNote;
 
         return binding.getRoot();
@@ -54,13 +55,26 @@ public class NoteDetailsFragment extends Fragment {
                     saveNote();
                 }
         );
+
+        binding.btnAddToHome.setOnClickListener(
+                (View v) -> {
+                    NavHostFragment.findNavController(AddNoteFragment.this)
+                            .navigate(R.id.action_AddNote_to_home);
+                }
+        );
     }
 
     void saveNote(){
+        ArrayList<String> arrFuelEco = new ArrayList<String>();
         String noteTitle = editTextTitle.getText().toString();
-        String noteContent = editTextContent.getText().toString();
         if (noteTitle==null || noteTitle.isEmpty()) {
             editTextTitle.setError("Title is required");
+            return;
+        }
+        String noteContent = editTextContent.getText().toString();
+        String noteFuelEconomy = editTextFuel.getText().toString();
+        if (noteFuelEconomy==null || noteFuelEconomy.isEmpty() || noteFuelEconomy.matches("[a-zA-Z]+")) {
+            editTextFuel.setError("FuelEconomy is required in 00.00");
             return;
         }
 
@@ -68,6 +82,14 @@ public class NoteDetailsFragment extends Fragment {
         note.setTitle(noteTitle);
         note.setContent(noteContent);
         note.setTimestamp(Timestamp.now());
+        note.setFuelEconomy(noteFuelEconomy);
+        arrFuelEco.add(noteFuelEconomy);
+
+        // transfer array to home
+        Bundle bundle = new Bundle();
+        bundle.putStringArrayList("arrFuelEco", new ArrayList<>(arrFuelEco));
+        Fragment fragment = new HomeFragment();
+        fragment.setArguments(bundle);
 
         saveNoteToFirebase(note);
     }
@@ -82,8 +104,10 @@ public class NoteDetailsFragment extends Fragment {
                 if(task.isSuccessful()){
                     // note is added
                     Toast.makeText(getActivity(), "Note added successfully", Toast.LENGTH_SHORT).show();
+                    NavHostFragment.findNavController(AddNoteFragment.this)
+                            .navigate(R.id.action_AddNote_to_home);
                 } else {
-                    //note failed
+                    //note add failed
                     Toast.makeText(getActivity(), "Failed while adding note", Toast.LENGTH_SHORT).show();
                 }
             }

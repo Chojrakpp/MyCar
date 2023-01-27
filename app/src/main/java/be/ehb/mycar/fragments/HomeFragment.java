@@ -2,9 +2,12 @@ package be.ehb.mycar.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.PopupMenu;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -19,6 +22,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+
+import java.util.List;
 
 import be.ehb.mycar.R;
 import be.ehb.mycar.adapters.NoteAdapter;
@@ -52,7 +57,7 @@ public class HomeFragment extends Fragment {
         btnNewNote.setOnClickListener(
                 (View v) -> {
                     NavHostFragment.findNavController(HomeFragment.this)
-                            .navigate(R.id.action_home_to_noteDetails);
+                            .navigate(R.id.action_home_to_addNote);
                 }
         );
 
@@ -72,13 +77,32 @@ public class HomeFragment extends Fragment {
     }
 
     void showMenu(){
+        PopupMenu popupMenu = new PopupMenu(getActivity(), btnMenu);
+        popupMenu.getMenu().add("Logout");
+        popupMenu.getMenu().add("Filter Ascending");
+        popupMenu.show();
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                if (item.getTitle()=="Logout"){
+                    FirebaseAuth.getInstance().signOut();
+                    NavHostFragment.findNavController(HomeFragment.this)
+                            .navigate(R.id.action_home_to_login);
+                    return true;
+                } if (item.getTitle()=="Filter Ascending"){
+                    return true;
+                }
+                return false;
+            }
+        });
 
     }
 
     void setupRecyclerView(){
-        Query query = getCollectionReferenceForNotes().orderBy("timestamp", Query.Direction.DESCENDING); // created database with timestamp
-        FirestoreRecyclerOptions<Note> options = new FirestoreRecyclerOptions.Builder<Note>() // converted query to options
-                .setQuery(query,Note.class).build();
+        Query query = getCollectionReferenceForNotes().orderBy("timestamp", Query.Direction.DESCENDING);
+
+        FirestoreRecyclerOptions<Note> options = new FirestoreRecyclerOptions.Builder<Note>()
+                .setQuery(query,Note.class).build();//
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         noteAdapter = new NoteAdapter(options, getActivity()); // options passed in noteadapter
         recyclerView.setAdapter(noteAdapter);

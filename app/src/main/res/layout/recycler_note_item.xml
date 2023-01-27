@@ -1,35 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    android:id="@+id/card_view"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tv_title_note"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="note title"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        android:layout_marginVertical="4dp"/>
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_title_note"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="4dp"
+            android:fontFamily="@font/poppins_bold"
+            android:maxWidth="250dp"
+            android:maxLines="2"
+            android:text="Gas Station Sint Pieters Leeuw"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_txt_big" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_fuel_economy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="4dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="12"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_txt_big" />
+
+            <TextView
+                android:id="@+id/l100km2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="4dp"
+                android:layout_marginLeft="4dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="l/100km"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_txt_big" />
+
+        </LinearLayout>
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/tv_content_note"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="this can be note content than can be long"
-        android:maxLines="2"
         android:ellipsize="end"
-        android:textSize="17sp"
-        android:layout_marginVertical="4dp"/>
+        android:fontFamily="@font/poppins_light"
+        android:lines="1"
+        android:maxLines="1"
+        android:text="Additional information"
+        android:textSize="@dimen/font_txt_nrml" />
 
     <TextView
         android:id="@+id/tv_timestamp_note"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="note time"
-        android:textSize="12sp"
+        android:fontFamily="@font/poppins_light"
         android:gravity="right"
-        android:layout_marginVertical="4dp"/>
+        android:text="date created"
+        android:textSize="@dimen/font_txt_small" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/black" />
 
 </LinearLayout>

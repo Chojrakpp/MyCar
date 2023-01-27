@@ -30,11 +30,32 @@
         android:name="be.ehb.mycar.fragments.HomeFragment"
         android:label="HomeFragment" >
         <action
-            android:id="@+id/action_home_to_noteDetails"
-            app:destination="@id/noteDetailsFragment" />
+            android:id="@+id/action_home_to_addNote"
+            app:destination="@id/AddNoteFragment" />
+        <action
+            android:id="@+id/action_home_to_detail"
+            app:destination="@id/detailFragment" />
+        <action
+            android:id="@+id/action_home_to_login"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
-        android:id="@+id/noteDetailsFragment"
-        android:name="be.ehb.mycar.fragments.NoteDetailsFragment"
-        android:label="NoteDetailsFragment" />
+        android:id="@+id/AddNoteFragment"
+        android:name="be.ehb.mycar.fragments.AddNoteFragment"
+        android:label="NoteDetailsFragment" >
+        <action
+            android:id="@+id/action_AddNote_to_home"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="be.ehb.mycar.fragments.DetailFragment"
+        android:label="DetailFragment" >
+        <argument
+            android:name="note"
+            app:argType="be.ehb.mycar.models.Note" />
+        <action
+            android:id="@+id/action_detail_to_home"
+            app:destination="@id/homeFragment" />
+    </fragment>
 </navigation>

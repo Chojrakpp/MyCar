@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".fragments.AddNoteFragment">
+
+    <LinearLayout
+        android:id="@+id/ll_title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/poppins_bold"
+            android:text="MyCar"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_txt_big" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/poppins_light"
+            android:text="Track your refueling"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_txt_small" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_title_bar"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp">
+
+        <ImageButton
+            android:id="@+id/btn_save_note"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_baseline_done_24"
+            app:tint="@color/primary" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_title_bar"
+        android:layout_marginVertical="26dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <EditText
+            android:id="@+id/et_note_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            android:fontFamily="@font/poppins_light"
+            android:hint="Gas Station"
+            android:padding="12dp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_txt_nrml"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/et_fuel_economy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:fontFamily="@font/poppins_light"
+                android:gravity="top"
+                android:hint="fuel economy"
+                android:inputType="number"
+                android:padding="12dp"
+                android:textSize="@dimen/font_txt_nrml" />
+
+            <EditText
+                android:id="@+id/et_fuel_economy2"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:ems="10"
+                android:focusable="false"
+                android:fontFamily="@font/poppins_light"
+                android:gravity="top"
+                android:inputType="number"
+                android:padding="12dp"
+                android:text="km/h"
+                android:textSize="@dimen/font_txt_nrml" />
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/et_note_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            android:fontFamily="@font/poppins_light"
+            android:gravity="top"
+            android:hint="Additional Information"
+            android:maxLines="5"
+            android:padding="12dp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_txt_nrml"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="32dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_light"
+            android:text="Changed your mind?"
+            android:textSize="12dp" />
+
+        <TextView
+            android:id="@+id/btn_add_to_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_bold"
+            android:text="Close"
+            android:textSize="@dimen/font_txt_nrml"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</RelativeLayout>

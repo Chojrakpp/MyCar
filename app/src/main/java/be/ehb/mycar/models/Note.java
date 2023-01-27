@@ -2,12 +2,17 @@ package be.ehb.mycar.models;
 
 import com.google.firebase.Timestamp;
 
+import java.io.Serializable;
 import java.util.Map;
 
-public class Note {
+public class Note implements Serializable {
+    String docId;
     String title;
     String content;
+    String FuelEconomy;
     Timestamp timestamp;
+
+
 
     public Note() {
     }
@@ -34,6 +39,22 @@ public class Note {
 
     public void setTimestamp(Timestamp timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public String getDocId() {
+        return docId;
+    }
+
+    public void setDocId(String docId) {
+        this.docId = docId;
+    }
+
+    public String getFuelEconomy() {
+        return FuelEconomy;
+    }
+
+    public void setFuelEconomy(String fuelEconomy) {
+        FuelEconomy = fuelEconomy;
     }
 }
 

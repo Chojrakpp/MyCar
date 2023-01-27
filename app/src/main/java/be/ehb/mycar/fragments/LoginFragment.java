@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -85,11 +86,11 @@ public class LoginFragment extends Fragment {
                 changeInProgress(false);
                 if(task.isSuccessful()){
                     // login is success
-                        //if (firebaseAuth.getCurrentUser().isEmailVerified()){
+                    Toast.makeText(getActivity(), "Succesfully loged in", Toast.LENGTH_SHORT).show();
                     NavHostFragment.findNavController(LoginFragment.this).navigate(R.id.action_login_to_home);
-                        //}
                 } else {
                     // login failed
+                    Toast.makeText(getActivity(), "Email or password invalid", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -114,7 +115,7 @@ public class LoginFragment extends Fragment {
             return false;
         }
         if (password.length()<6){
-            editTextpassword.setError("Password too short");
+            editTextpassword.setError("Password too short, you need 6 characters at least");
             return false;
         }
         return true;
